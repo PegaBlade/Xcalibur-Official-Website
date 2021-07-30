@@ -1,0 +1,56 @@
+<head>
+<meta charset="utf-8">
+<title>Xcalibur's Official Site - Statistics</title>
+<link rel="shortcut icon" href="https://lh3.googleusercontent.com/ogw/ADea4I61BnoRyiZI35x4zjFigyk73yc9ugGuQzTgdLpa1A=s83-c-mo" type="image/x-icon">  
+<script type="text/javascript" src="main.js"></script>
+<link href="statistics.css" rel="stylesheet" type="text/css" />
+<div class="menu">
+<a href="https://woodencarpetplayz.github.io/Xcalibur-Official-Website/Xcalibur-Official-Site.html" class="statistics">Back</a>
+</div>
+</head>
+<body>
+
+
+<h2>Subscriber goal : 50</h2>
+<a href="https://www.youtube.com/channel/UCLrMVgfe67XZeBn3tZUzYSA?sub_confirmation=1" target="_blank"><img src="subscribe.png" alt="Subscribe"></a>
+<br>
+<br>
+<div style="width:560px;height:315px;border:2px solid #000;text-align:center;margin:auto;">    YouTube Subscribers
+    <div id="subscriberCount"></div>
+
+    YouTube Video Views
+    <div id="viewCount"></div>
+
+    YouTube Video Count
+    <div id="videoCount"></div></div>
+
+    <script>
+
+    
+    const APIKey = 'AIzaSyAlj5Tf9tsG2TqXVgp74c0UI_bmuUdfHeU';
+    const Userid = 'UCLrMVgfe67XZeBn3tZUzYSA';
+    const subscriberCount= document.getElementById('subscriberCount');
+    const viewCount = document.getElementById('viewCount');
+    const videoCount = document.getElementById('videoCount');
+
+   
+
+    let getdata = () => {
+
+        fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${Userid}&key=${APIKey}`)
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            console.log(data);
+            subscriberCount.innerHTML = data["items"][0].statistics.subscriberCount;
+            viewCount.innerHTML = data["items"][0].statistics.viewCount;
+            videoCount.innerHTML = data["items"][0].statistics.videoCount;
+            
+        })
+
+    }
+
+   getdata();
+    </script>
+</body>
